@@ -1,0 +1,16 @@
+SSH SUR WINDOWS OU MobaXterm
+
+ssh pwnd@192.168.56.80
+
+sudo -s
+
+nano /etc/mysql/mariadb.conf.d/50-server.cnf
+bind-address = 192.168.56.101
+Ctrk+O
+Ctrl+x
+
+systemctl restart mariadb
+mysql
+create user 'foodie'@'%' identified by 'foodie';
+grant all privileges on *.* to 'foodie'@'%';
+flush privileges;

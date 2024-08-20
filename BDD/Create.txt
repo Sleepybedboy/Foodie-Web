@@ -1,0 +1,14 @@
+CREATE SCHEMA Foodie ;
+
+CREATE TABLE Recette(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nom VARCHAR(255),
+recette VARCHAR(255),
+image VARCHAR(255)
+);
+
+INSERT INTO Recette(nom, recette, image)
+VALUES
+('Piémontaise','/recette/Piemontaise.pdf', '/image/Piemontaise.jpg'),
+('Panna Cotta',	'/recette/Panna_Cotta.pdf', '/image/Panna_Cotta.jpg'),
+('Pâte à tartiner', '/recette/Pate_tartiner.pdf', '/image/Pate_tartiner.jpg');

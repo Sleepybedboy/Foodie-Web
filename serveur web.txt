@@ -1,0 +1,157 @@
+
+Étape 1 : Configurer le serveur web
+Mettre à jour le système :
+
+bash
+Copier le code
+sudo apt update
+sudo apt upgrade
+Installer Apache :
+
+bash
+Copier le code
+sudo apt install apache2
+Vérifier l'installation :
+
+Accédez à http://your_server_ip dans un navigateur. Vous devriez voir la page de bienvenue d'Apache.
+
+
+Étape 2 : Installer MySQL
+Installer MySQL :
+
+bash
+Copier le code
+sudo apt install default-mysql-server
+Sécuriser l'installation MySQL :
+
+
+
+bash
+Copier le code
+sudo mysql_secure_installation
+Accéder à MySQL :
+
+bash
+Copier le code
+sudo mysql
+
+
+Étape 3 : Configurer l'accès SSH
+Installer OpenSSH Server :
+
+bash
+Copier le code system
+sudo apt install openssh-server
+Vérifier que le service SSH fonctionne :
+
+bash
+Copier le code
+sudo systemctl status ssh
+
+
+Configurer SSH (optionnel) :
+
+Modifiez le fichier de configuration SSH :
+bash
+Copier le code
+sudo nano /etc/ssh/sshd_config
+Par exemple, changez le port par défaut (22) à un autre port pour plus de sécurité :
+bash
+Copier le code
+Port 2222
+Redémarrez le service SSH pour appliquer les modifications :
+bash
+Copier le code
+sudo systemctl restart ssh
+
+Étape 4 : Accès distant via SSH
+Obtenir l'adresse IP de votre serveur :
+
+bash
+Copier le code
+ip a
+Se connecter via SSH depuis un autre ordinateur :
+
+bash
+Copier le code
+ssh your_username@your_server_ip
+Si vous avez changé le port SSH :
+bash
+Copier le code
+ssh -p 2222 your_username@your_server_ip
+
+Étape 5 : Installer des outils supplémentaires (optionnel)
+
+
+
+Configurer le pare-feu :
+
+Installer ufw :
+
+bash
+Copier le code
+sudo apt install ufw
+Autoriser SSH, HTTP, et HTTPS :
+bash
+Copier le code
+sudo ufw allow OpenSSH
+sudo ufw enable
+
+sudo ufw allow 'Apache Full'
+// Si erreur
+
+sudo nano /etc/ufw/applications.d/apache2
+[Apache]
+title=Web Server
+description=Apache v2 is the next generation of the omnipresent Apache web server.
+ports=80/tcp
+
+[Apache Secure]
+title=Web Server (HTTPS)
+description=Apache v2 is the next generation of the omnipresent Apache web server.
+ports=443/tcp
+
+[Apache Full]
+title=Web Server (HTTP,HTTPS)
+description=Apache v2 is the next generation of the omnipresent Apache web server.
+ports=80,443/tcp
+
+sudo ufw reload
+sudo ufw allow 'Apache Full'
+
+
+Étape 6 : Sauvegarde et Maintenance
+Mettez régulièrement à jour votre système :
+
+bash
+Copier le code
+sudo apt update && sudo apt upgrade
+
+
+Sauvegardez vos données :
+
+Configurez des sauvegardes régulières pour vos bases de données et fichiers.
+Avec ces étapes, vous aurez un serveur web fonctionnel avec une base de données MySQL et un accès SSH sécurisé. N'hésitez pas à consulter des tutoriels spécifiques pour chaque distribution Linux pour des instructions plus détaillées.
+
+
+
+Autoriser seulement une ip vers sql
+ufw allow from 192.168.56.1 proto tcp to 192.168.56.101 port 3306
+
+
+ecouter si ip tentative communication
+journalctl -xe
+
+
+sudo apt install php
+sudo apt install php-mysqli
+sudo systemctl restart apache2
+
+
+
+
+NE PAS OUBLIER DE FAIRE
+
+chmod -R 777 html/
+chmod -R 777 recette/
+chmod -R 777 image/
